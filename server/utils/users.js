@@ -10,6 +10,17 @@ class Users {
   constructor() {
     this.users = [];
   }
+  userExists(name, room) {
+    var users = this.users.filter(
+      user =>
+        user.room === room && user.name.toUpperCase() === name.toUpperCase()
+    );
+    if (users.length > 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
   addUser(id, name, room) {
     var user = { id, name, room };
     this.users.push(user);

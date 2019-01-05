@@ -21,6 +21,7 @@ function scrollToBottom() {
 
 socket.on("connect", function() {
   var params = jQuery.deparam(window.location.search);
+  params.room = params.room.toUpperCase();
 
   socket.emit("join", params, function(err) {
     if (err) {
@@ -56,7 +57,6 @@ socket.on("newMessage", function(message) {
   jQuery("#messages").append(html);
   if (message.from === params.name) {
     $(".message:last").addClass("my-message");
-    console.log("class added");
   }
   scrollToBottom();
 });
@@ -64,12 +64,16 @@ socket.on("newMessage", function(message) {
 socket.on("newLocationMessage", function(message) {
   var formattedTime = moment(message.createdAt).format("h:mm a");
   var template = jQuery("#location-message-template").html();
+  var params = jQuery.deparam(window.location.search);
   var html = Mustache.render(template, {
     from: message.from,
     createdAt: formattedTime,
     url: message.url
   });
   jQuery("#messages").append(html);
+  if (message.from === params.name) {
+    $(".message:last").addClass("my-location-message");
+  }
   scrollToBottom();
 });
 

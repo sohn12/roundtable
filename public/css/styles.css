@@ -215,9 +215,11 @@ button:disabled {
   }
 }
 
-.my-message h4 {
+.my-message h4,
+.my-location-message h4 {
   margin-left: auto;
 }
-.my-message {
+.my-message,
+.my-location-message {
   text-align: right;
 }
