@@ -47,12 +47,17 @@ socket.on("updateUserList", function(users) {
 socket.on("newMessage", function(message) {
   var formattedTime = moment(message.createdAt).format("h:mm a");
   var template = jQuery("#message-template").html();
+  var params = jQuery.deparam(window.location.search);
   var html = Mustache.render(template, {
     text: message.text,
     from: message.from,
     createdAt: formattedTime
   });
   jQuery("#messages").append(html);
+  if (message.from === params.name) {
+    $(".message:last").addClass("my-message");
+    console.log("class added");
+  }
   scrollToBottom();
 });
 

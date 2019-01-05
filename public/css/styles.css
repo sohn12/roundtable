@@ -214,3 +214,10 @@ button:disabled {
     margin-right: 0;
   }
 }
+
+.my-message h4 {
+  margin-left: auto;
+}
+.my-message {
+  text-align: right;
+}
