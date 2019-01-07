@@ -80,7 +80,8 @@ socket.on("newLocationMessage", function(message) {
 
 jQuery("#message-form").on("submit", function(e) {
   e.preventDefault();
-  var messageTextBox = jQuery("[name=message]");
+  //var messageTextBox = jQuery("[name=message]");
+  var messageTextBox = $("#message-form").find('input[name="message"]');
   socket.emit(
     "createMessage",
     {
